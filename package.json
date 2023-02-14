@@ -1,0 +1,16 @@
+{
+  "name": "cucumber-sandwich",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chromedriver": "^110.0.0",
+    "jest": "^29.4.2",
+    "selenium-webdriver": "^4.8.0"
+  }
+}
