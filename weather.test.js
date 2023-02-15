@@ -18,7 +18,7 @@ test("Complex CSS selector", async () => {
     const element = await browser.getElementByCss('.orbit-header-links.domestic > ul > li:nth-child(3) > a > span');
     const text = await element.getText();
     expect(text).toBe('Sport');
-})
+});
 
 test("Initially has a search bar", async () => {
     const element = await browser.getElement("ls-c-search__input-label");
@@ -70,6 +70,39 @@ test("Location heading correct after a search", async () => {
     // E.g., Bridgnorth - Weather warnings issued
     // So switched to matching start of string
     //
+    
+    expect(text.startsWith(location)).toBe(true);
+}, timeout);
+
+//my code
+
+test("UK weather text file", async () => {
+    const element = await browser.getElement('wr-c-regional-forecast-slice__title');
+    const text = await element.getText();
+    expect(text).toBe('UK weather');
+});
+
+test("checking the nav bar", async () => {
+    const element = await browser.getElementByCss('.orbit-header-links.domestic > ul > li:nth-child(6) > a > span');
+    const text = await element.getText();
+    expect(text).toBe('Sounds');
+});
+
+test("milnrow locaion heading", async () => {
+    const location = "Milnrow";
+
+    const searchInput = await browser.getElement('ls-c-search__input-label');
+    const searchSubmit = await browser.getElementByCss('button.ls-c-search__submit');
+
+    await searchInput.sendKeys(location);
+    await searchSubmit.click();
+    await browser.waitForElementByCss('.wr-c-observations__heading', timeout/2);
+
+    const element = await browser.getElement("wr-location-name-id");
+    const tagName = await element.getTagName();
+    expect(tagName).toBe('h1');
+
+    const text = await element.getText();
     
     expect(text.startsWith(location)).toBe(true);
 }, timeout);
